@@ -26,6 +26,7 @@ class ComicsTableSeeder extends Seeder
         $newComic->type = $faker->sentence(3);
         $newComic->artists = $faker->name();
         $newComic->writers = $faker->name();
+
         $newComic->save();
        }
     }
