@@ -21,8 +21,8 @@ return new class extends Migration
             $table->char('series');
             $table->date('sale_date');
             $table->char('type');
-            $table->text('artists');
-            $table->text('writers');
+            // $table->text('artists');
+            // $table->text('writers');
 
             $table->timestamps();
         });
