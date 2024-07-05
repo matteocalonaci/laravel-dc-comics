@@ -1,8 +1,20 @@
 @extends('layouts.app')
-
 @section('content')
-<p class="p-2">App avviata correttamente</p>
-<button class="btn btn-primary m-2">Cliccami</button>
+<h2>Comics List</h2>
+<div class="card_container">
 
+@foreach ($comicsList as $comic)
+<div class="card" >
+    <div class="img_container">
+        <img src="{{$comic['thumb']}}" alt="">
+    </div>
+    <ul>
+    <li style="text-align: center">Titolo: {{$comic["title"]}}</li>
+    </ul>
+</div>
 
+@endforeach
+</div>
 @endsection
+
+
