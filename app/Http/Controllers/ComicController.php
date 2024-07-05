@@ -70,7 +70,10 @@ class ComicController extends Controller
      */
     public function edit(Comic $comic)
     {
-      //
+        $data = [
+            "comic" => $comic
+        ];
+        return view('comics.edit', $data);
     }
 
     /**
