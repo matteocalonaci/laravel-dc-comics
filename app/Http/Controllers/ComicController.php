@@ -50,16 +50,17 @@ class ComicController extends Controller
 
         $newComic->save();
 
-        return redirect()->route('comics.show', $newComic->id) ;
+        return redirect()->route('comics.show',['comic'=> $newComic->id]) ;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Comic $data)
+    public function show(string $id)
     {
+        $comic = Comic::find($id);
         $data = [
-            "comic" => $data
+            "comic" => $comic
         ];
         return view('comics.show', $data);
     }
@@ -67,9 +68,9 @@ class ComicController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Comic $comic)
     {
-        //
+      //
     }
 
     /**
