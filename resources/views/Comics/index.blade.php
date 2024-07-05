@@ -5,13 +5,13 @@
 <div class="card_container">
 
 @foreach ($comicsList as $comic)
-<div class="card" style="height: 42rem; padding-bottom: 9rem;
+<div class="card" style="height: 60rem; padding-bottom: 9rem;
 ">
     <div class="img_container">
         <img src="{{$comic['thumb']}}" alt="">
     </div>
     <ul>
-    <li>Titolo: {{$comic["title"]}}</li>
+    <li class="mt-4">Titolo: {{$comic["title"]}}</li>
     <li>Descrizione: {{$comic["description"]}}</li>
     <li>Serie: {{$comic["series"]}}</li>
     <li>Tipo: {{$comic["type"]}}</li>

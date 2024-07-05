@@ -9,7 +9,7 @@
         <img src="{{$comic['thumb']}}" alt="">
     </div>
     <ul>
-    <li style="text-align: center">Titolo: {{$comic["title"]}}</li>
+    <li class="mt-4" style="text-align: center">Titolo: {{$comic["title"]}}</li>
     </ul>
 </div>
 

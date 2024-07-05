@@ -1,3 +1,5 @@
+@import "~bootstrap/scss/bootstrap";
+
 
 body{
     background-color: rgb(1, 11, 63) ;
@@ -89,7 +91,7 @@ a {
 h2{
     margin: 0 auto;
     text-align: center;
-    padding: 2rem;
+    padding: 1rem;
     color: blueviolet;
 }
 
@@ -107,4 +109,9 @@ footer {
 
 h6, p{
     padding-left: 11rem;
+}
+
+label{
+    color: plum;
+    font-size: 1rem;
 }
