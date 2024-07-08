@@ -15,11 +15,11 @@ class ComicController extends Controller
         $catalogo = Comic::all();
         $store = config("data");
         $data =
-        [
-            "comicsList" => $catalogo,
-            "store" => $store
+            [
+                "comicsList" => $catalogo,
+                "store" => $store
 
-        ];
+            ];
         return view('comics.index', $data);
     }
 
@@ -37,28 +37,30 @@ class ComicController extends Controller
     public function store(Request $request)
     {
         //sono i dati che attivano dal form
-        $data = $request->all();
+        $data = $request->validate([
+            "title" => "required|min:5|max:50",
+            "description" => "required|min:10|max:200",
+            "thumb" => "required|url",
+            "price" => "required|numeric",
+            "series" => "required|min:5|max:50",
+            "sale_date" => "required|date",
+            "type" => "required|min:5|max:50"
+        ]);
 
         $newComic = new Comic();
-        $newComic->title = $data['title'];
-        $newComic->description = $data['description'];
-        $newComic->thumb = $data['thumb'];
-        $newComic->price = $data['price'];
-        $newComic->series = $data['series'];
-        $newComic->sale_date = $data['sale_date'];
-        $newComic->type = $data['type'];
+        $newComic->fill($data);
 
         $newComic->save();
 
-        return redirect()->route('comics.show',['comic'=> $newComic->id]) ;
+        return redirect()->route('comics.show', ['comic' => $newComic->id]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Comic $comic)
     {
-        $comic = Comic::find($id);
+
         $data = [
             "comic" => $comic
         ];
@@ -79,16 +81,29 @@ class ComicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Comic $comic)
     {
-        //
+        $data = $request->all();
+
+        $comic->title = $data['title'];
+        $comic->description = $data['description'];
+        $comic->thumb = $data['thumb'];
+        $comic->price = $data['price'];
+        $comic->series = $data['series'];
+        $comic->sale_date = $data['sale_date'];
+        $comic->type = $data['type'];
+
+        $comic->save();
+
+        return redirect()->route('comics.show', ['comic' => $comic]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+        return redirect()->route('comics.index');
     }
 }
